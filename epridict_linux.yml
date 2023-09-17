@@ -49,4 +49,3 @@ dependencies:
       - pybigwig==0.3.22
       - scipy==1.11.2
       - xgboost==1.7.6
-prefix: /home/nicolas/anaconda3/envs/epridict
