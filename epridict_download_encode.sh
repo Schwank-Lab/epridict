@@ -21,10 +21,19 @@ else
 fi
 
 # Exit if the user does not confirm
-if [ "$CONFIRM" != "yes" ]; then
-  echo "Operation cancelled."
-  exit 0
-fi
+case "$CONFIRM" in
+  [yY] | [yY][eE][sS])
+    # proceed with the operation
+    ;;
+  [nN] | [nN][oO])
+    echo "Operation cancelled."
+    exit 0
+    ;;
+  *)
+    echo "Invalid answer. Operation cancelled."
+    exit 1
+    ;;
+esac
 
 # Use Python for CSV parsing and row filtering
 python3 - <<END
