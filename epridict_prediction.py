@@ -4,15 +4,19 @@ import os
 import pandas as pd
 from joblib import Parallel, delayed
 import numpy as np
-import xgboost as xgb
 import pyBigWig
 import argparse
 import bisect
 from tqdm import tqdm
+# remove FutureWarning of XGBoost on MacOS:
+import warnings
+warnings.filterwarnings("ignore", category=FutureWarning)
+
+import xgboost as xgb
 
 ### Settings ###
 
-model = "slim"  # "slim" or "full"
+model = "light"  # "light" or "full"
 
 bigwig_folder = "./bigwig"  # Folder containing bigWig files; files must be downloaded first (see README.md)
 
@@ -21,7 +25,7 @@ output_folder = "./predictions"  # Folder to save output files
 
 ### End of settings ###
 
-genomewide_prediction_slim_df = pd.read_csv('misc/genome_wide_ePRIDICT_slim_predictions_K562.csv')
+genomewide_prediction_light_df = pd.read_csv('misc/genome_wide_ePRIDICT_slim_predictions_K562.csv')
 
 def find_closest_percentile(df: pd.DataFrame, value_to_find: float) -> float:
     """
@@ -158,10 +162,10 @@ def predict_efficiency_single(chromosome, position, output_dir, model_file, mode
     # Use the model to predict efficiency
     prediction = model.predict(data_dmatrix)
 
-    percentile = find_closest_percentile(genomewide_prediction_slim_df, prediction[0])
+    percentile = find_closest_percentile(genomewide_prediction_light_df, prediction[0])
 
     features_df[f"ePRIDICT_prediction_{model_name}"] = prediction[0]
-    features_df[f"percentile_slim_ePRIDICT_genomewide_K562"] = percentile
+    features_df[f"percentile_light_ePRIDICT_genomewide_K562"] = percentile
     features_df = features_df.transpose()
     # rename column "0" to "value"
     features_df = features_df.rename(columns={0: "feature_value"})
@@ -171,7 +175,7 @@ def predict_efficiency_single(chromosome, position, output_dir, model_file, mode
         features_df.to_csv(os.path.join(output_dir, f"{chromosome}_{position}.csv"))
 
         print(f"ePRIDICT score ({model_name} model): ", round(prediction[0], 2))
-        print(f"Percentile in context of {len(genomewide_prediction_slim_df)} sampled genomic locations in K562: {round(percentile,2)}%")
+        print(f"Percentile in context of {len(genomewide_prediction_light_df)} sampled genomic locations in K562: {round(percentile,2)}%")
         print()
         print(f"Output stored in {output_dir} as {chromosome}_{position}.csv")
         print()
@@ -205,7 +209,7 @@ def predict_efficiency_df(batchdf, out_dir, model_file, model_name):
         try:
             prediction, percentile, feature_df_row, notes = predict_efficiency_single(chromosome, position, out_dir, model_file, model_name, preloaded_model=model)
             feature_df_row = feature_df_row.transpose()
-            feature_df_row = feature_df_row.drop(columns=[col for col in ['ePRIDICT_prediction_slim', 'percentile_slim_ePRIDICT_genomewide_K562'] if col in feature_df_row.columns])
+            feature_df_row = feature_df_row.drop(columns=[col for col in ['ePRIDICT_prediction_light', 'percentile_light_ePRIDICT_genomewide_K562'] if col in feature_df_row.columns])
 
         except Exception as e:
             prediction = None
@@ -238,8 +242,8 @@ def read_model_columns(file_path):
     with open(file_path, 'r') as f:
         return [line.strip() for line in f.readlines()]
 
-# Hardcoded slim model columns
-# slim_model_columns = ['Dnase-seq_ENCFF972GVB_average_value_100',
+# Hardcoded light model columns
+# light_model_columns = ['Dnase-seq_ENCFF972GVB_average_value_100',
 #  'Dnase-seq_ENCFF972GVB_average_value_1000',
 #  'Dnase-seq_ENCFF972GVB_average_value_2000',
 #  'Dnase-seq_ENCFF972GVB_average_value_5000',
@@ -267,10 +271,10 @@ def read_model_columns(file_path):
 # Read full model columns from the text file
 full_model_columns = read_model_columns('misc/ePRIDICT_full_model_column_names.txt')
 
-slim_model_columns = read_model_columns('misc/ePRIDICT_slim_model_column_names.txt')
+light_model_columns = read_model_columns('misc/ePRIDICT_slim_model_column_names.txt')
 
 # Update the column_names_dict with the new full model columns
-column_names_dict = {'slim': slim_model_columns, 'full': full_model_columns}
+column_names_dict = {'light': light_model_columns, 'full': full_model_columns}
 
 
 if __name__ == "__main__":
@@ -282,13 +286,13 @@ if __name__ == "__main__":
 
     manual_m.add_argument("--chromosome", type=str, help="Chromosome of location to predict. ('chr1', 'chr2', ... , 'chrX'", required=True)
     manual_m.add_argument("--position_hg38", type=str, help="Genomic position of location to predict within selected chromosome. ('11939204',...)", required=True)
-    manual_m.add_argument("--use_full_model", action='store_true', help="Use full model with 455 ENCODE datasets. Default is to use slim model")
+    manual_m.add_argument("--use_full_model", action='store_true', help="Use full model with 455 ENCODE datasets. Default is to use light model")
 
     batch_m.add_argument("input_fname", type=str, help="Input filename - name of csv file that has three columns {identifier, chromosome ('chr1', 'chr2', ...), position (within chromosome)}. See batch_template.csv in the ./input folder ")
     # batch_m.add_argument("--input-dir", type=str, default=input_folder, help="Input directory where the input csv file is found on disk")
     # batch_m.add_argument("--output-dir", type=str, default=output_folder, help="Output directory where results are dumped on disk")
     batch_m.add_argument("--output-fname", type=str, help="Output filename for the resulting dataframe. If not specified, the name of the input file will be used")
-    batch_m.add_argument("--use_full_model", action='store_true', help="Use full model with 455 ENCODE datasets. Default is to use slim model")
+    batch_m.add_argument("--use_full_model", action='store_true', help="Use full model with 455 ENCODE datasets. Default is to use light model")
   
     args = parser.parse_args()
 
@@ -307,9 +311,9 @@ if __name__ == "__main__":
         if args.use_full_model:
             model="full"
         else:
-            model="slim"
+            model="light"
 
-        if model == "slim":
+        if model == "light":
             model_file = "models/epridict_slim_xgboost_model.json"
         elif model == "full":
             model_file = "models/epridict_full_xgboost_model.json"
@@ -335,9 +339,9 @@ if __name__ == "__main__":
         if args.use_full_model:
             model="full"
         else:
-            model="slim"
+            model="light"
 
-        if model == "slim":
+        if model == "light":
             model_file = "models/epridict_slim_xgboost_model.json"
         elif model == "full":
             model_file = "models/epridict_full_xgboost_model.json"

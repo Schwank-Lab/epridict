@@ -1,7 +1,14 @@
 # ePRIDICT: epigenetic PRIme editing preDICTion
-Repository containing `Python` package for running trained `ePRIDICT` (epigenetic PRIme editing preDICTion) models. Models were trained in K562 cells. Prediction performance may vary in different cellular contexts. Check out the publication for further details.
 
-To run `ePRIDICT` online, see our [webapp](https://pridict.it/epridict).
+This repository is part of the study [Predicting prime editing efficiency across diverse edit types and chromatin contexts with machine learning](https://pridict.it/epridict).
+
+Predict prime editing efficiency based on chromatin context of a genomic location in K562 cells.
+Repository containing `Python` package for running trained `ePRIDICT` (epigenetic PRIme editing preDICTion) models. 
+Models were trained in K562 cells. Prediction performance may vary in different cellular contexts. Check out the publication for further details.
+
+To run `ePRIDICT` online, see our webapp [pridict.it/epridict](https://pridict.it/epridict).*
+
+*Default model for this repository and online webapp is `ePRIDICT-light`. For running the full `ePRIDICT` model, check the description below.
 
 --------------------------
 
@@ -27,9 +34,9 @@ The easiest way to install and manage Python packages on various OS platforms is
 
 * Next, downloading ENCODE datasets is needed for prediction with ePRIDICT. Files will be downloaded in `bigwig` folder.
   Note: For running the `full` model, 455 datasets will be downloaded, requiring **624 GB** of storage space!
-        For the `slim` model, with near on-par performance, 6 datasets will be downloaded, requiring **5.3 GB** of storage space.
+        For the `light` model, with near on-par performance, 6 datasets will be downloaded, requiring **5.3 GB** of storage space.
   ```shell
-  ./epridict_download_encode.sh slim # or ./epridict_download_encode.sh full
+  ./epridict_download_encode.sh light # or ./epridict_download_encode.sh full
   ```
   
 --------------------------
@@ -39,7 +46,7 @@ The easiest way to install and manage Python packages on various OS platforms is
   -  `--chromosome`: Chromosome of desired location. Format: "chr1", "chr2", ...
   -  `--position_hg38`: Position within chromosome (hg38). Example: "1192940"
   #### Optional:
-  -  `--use_full_model`: Use `full` model (455 ENCODE datasets) for prediction. Only possible when downloaded all datasets with `./epridict_download_encode.sh full`. Default: `slim` model
+  -  `--use_full_model`: Use `full` model (455 ENCODE datasets) for prediction. Only possible when downloaded all datasets with `./epridict_download_encode.sh full`. Default: `light` model
 
 ```shell
 
@@ -55,7 +62,7 @@ python epridict_prediction.py manual --chromosome chr3 --position_hg38 44843504
   -  `input_filename`: Input file name - name of .csv file that has two columns [`chromosome`, `position_hg38`]. See `sample_epridict_batch.csv` in the `./input` folder.
   #### Optional:
   -  `--output-fname`: Alternative output filename. Default is `input_filename_output.csv`.
-  -  `--use_full_model`: Use `full` model (455 ENCODE datasets) for prediction. Only possible when downloaded all datasets with `./epridict_download_encode.sh full`. Default: `slim` model
+  -  `--use_full_model`: Use `full` model (455 ENCODE datasets) for prediction. Only possible when downloaded all datasets with `./epridict_download_encode.sh full`. Default: `light` model
   
 ```shell
 
@@ -66,4 +73,3 @@ python epridict_prediction.py batch sample_epridict_batch.csv
 
 ### Citation
 If you find our work is useful in your research, please cite the following paper:
-
