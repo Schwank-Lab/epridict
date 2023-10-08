@@ -1,0 +1,4 @@
+name,prefix,pcr_type,filename_r1,filename_r2,folder
+20230409_NM-TRIP_Library,Library,ForBC,20230409_NM-TRIP_Library_ForBC_R1.fastq.gz,20230409_NM-TRIP_Library_ForBC_R2.fastq.gz,./fastq/library
+20230409_NM-TRIP_Library,Library,For,20230409_NM-TRIP_Library_For_R1.fastq.gz,20230409_NM-TRIP_Library_For_R2.fastq.gz,./fastq/library
+20230409_NM-TRIP_Library,Library,Rev,20230409_NM-TRIP_Library_Rev_R1.fastq.gz,20230409_NM-TRIP_Library_Rev_R2.fastq.gz,./fastq/library

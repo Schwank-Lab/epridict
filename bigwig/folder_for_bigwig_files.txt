@@ -1,1 +1,0 @@
-ENCODE datasets will be stored in this folder for the prediction with ePRIDICT.
