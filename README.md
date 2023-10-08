@@ -10,6 +10,8 @@ To run `ePRIDICT` online, see our webapp [pridict.it/epridict](https://pridict.i
 
 *Default model for this repository and online webapp is `ePRIDICT-light`. For running the full `ePRIDICT` model, check the description below.
 
+To access supplementary code/files of our study, click [here](https://github.com/Schwank-Lab/epridict/tree/supplementary_files).
+
 --------------------------
 
 ### Installation using Anaconda (Linux and Mac OS) 🐍
