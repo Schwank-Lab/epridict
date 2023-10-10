@@ -1,18 +1,38 @@
 # ePRIDICT: epigenetic PRIme editing preDICTion
 
-This repository is part of the study [Predicting prime editing efficiency across diverse edit types and chromatin contexts with machine learning](https://pridict.it/epridict).
+## Overview
+
+This repository is part of our BioRxiv preprint [Predicting prime editing efficiency across diverse edit types and chromatin contexts with machine learning](https://www.biorxiv.org/content/10.1101/2023.10.09.561414v1).
 
 Predict prime editing efficiency based on chromatin context of a genomic location in K562 cells.
 Repository containing `Python` package for running trained `ePRIDICT` (epigenetic PRIme editing preDICTion) models. 
-Models were trained in K562 cells. Prediction performance may vary in different cellular contexts. Check out the publication for further details.
+Models were trained in K562 cells. Prediction performance may vary in different cellular contexts. Check out our [preprint](https://www.biorxiv.org/content/10.1101/2023.10.09.561414v1) publication for further details.
 
-To run `ePRIDICT` online, see our webapp [pridict.it/epridict](https://pridict.it/epridict).*
+## Complementary Model
+
+- **PRIDICT2.0**: This model focuses on the sequence-context based prime efficiency prediction and pegRNA design. We recommend to first select the most suitable pegRNA with PRIDICT2.0 and then assess its overall endogenous targetability with ePRIDICT. [Access PRIDICT2.0 GitHub Repository](https://github.com/uzh-dqbm-cmi/PRIDICT2)
+
+## Resources
+
+- **Supplementary Files**: [Access Here](https://github.com/Schwank-Lab/epridict/tree/supplementary_files)
+- **Web Application**: For an online version of ePRIDICT, visit our [webapp](https://pridict.it/epridict)*.
 
 *Default model for this repository and online webapp is `ePRIDICT-light`. For running the full `ePRIDICT` model, check the description below.
 
-To access supplementary code/files of our study, click [here](https://github.com/Schwank-Lab/epridict/tree/supplementary_files).
+## Contact
 
---------------------------
+For questions or suggestions, please either:
+- Email us at [nicolas.mathis@pharma.uzh.ch](mailto:nicolas.mathis@pharma.uzh.ch)
+- Open a GitHub issue
+
+## Citation
+
+If find our work useful for your research please cite:
+- [Mathis et al., BioRxiv, 2023](https://www.biorxiv.org/content/10.1101/2023.10.09.561414v1) (ePRIDICT and PRIDICT2.0)
+- [Mathis & Allam et al., Nature Biotechnology, 2023](https://rdcu.be/c3IM5) (PRIDICT)
+
+
+## Getting Started
 
 ### Installation using Anaconda (Linux and Mac OS) 🐍
 📣 `ePRIDICT` can only be installed on `Linux` and `Mac OS` since `pybigwig` package is not available for `Windows` 📣
@@ -72,6 +92,4 @@ python epridict_prediction.py batch sample_epridict_batch.csv
 # for full model and alternative output filename:
 # python epridict_prediction.py batch sample_epridict_batch.csv --output-fname alternative_output_filename_batch.csv --use_full_model
 ```
-
-### Citation
-If you find our work is useful in your research, please cite the following paper:
+--------------------------
