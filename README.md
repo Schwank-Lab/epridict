@@ -1,6 +1,6 @@
 # Supplementary files and code
 
-This branch contains supplementary files and code of the study [Predicting prime editing efficiency across diverse edit types and chromatin contexts with machine learning](https://pridict.it/).
+This branch contains supplementary files and code of the study [Machine learning prediction of prime editing efficiency across diverse chromatin contexts](https://rdcu.be/dLu0f) and the initial preprint [Predicting prime editing efficiency across diverse edit types and chromatin contexts with machine learning](https://www.biorxiv.org/content/10.1101/2023.10.09.561414v1).
 
 Note, that you can find supplementary files for both, ePRIDICT and PRIDICT2.0 models in this branch.
 
