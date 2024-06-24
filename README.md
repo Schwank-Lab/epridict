@@ -2,11 +2,11 @@
 
 ## Overview
 
-This repository is part of our BioRxiv preprint [Predicting prime editing efficiency across diverse edit types and chromatin contexts with machine learning](https://www.biorxiv.org/content/10.1101/2023.10.09.561414v1).
+This repository is part of our study in Nature Biotechnology ["Machine learning prediction of prime editing efficiency across diverse chromatin contexts"](https://rdcu.be/dLu0f) and the initial [BioRxiv preprint](https://www.biorxiv.org/content/10.1101/2023.10.09.561414v1).
 
 Predict prime editing efficiency based on chromatin context of a genomic location in K562 cells.
 Repository containing `Python` package for running trained `ePRIDICT` (epigenetic PRIme editing preDICTion) models. 
-Models were trained in K562 cells. Prediction performance may vary in different cellular contexts. Check out our [preprint](https://www.biorxiv.org/content/10.1101/2023.10.09.561414v1) publication for further details.
+Models were trained in K562 cells. Prediction performance may vary in different cellular contexts. Check out our [publication](https://rdcu.be/dLu0f) for further details.
 
 ## Complementary Model
 
@@ -28,7 +28,7 @@ For questions or suggestions, please either:
 ## Citation
 
 If find our work useful for your research please cite:
-- [Mathis et al., BioRxiv, 2023](https://www.biorxiv.org/content/10.1101/2023.10.09.561414v1) (ePRIDICT and PRIDICT2.0)
+- [Mathis et al., Nature Biotechnology, 2024](https://rdcu.be/dLu0f) (ePRIDICT and PRIDICT2.0)
 - [Mathis & Allam et al., Nature Biotechnology, 2023](https://rdcu.be/c3IM5) (PRIDICT)
 
 
