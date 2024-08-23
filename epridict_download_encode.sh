@@ -35,24 +35,56 @@ case "$CONFIRM" in
     ;;
 esac
 
-# Use Python for CSV parsing and row filtering
-python3 - <<END
+# Function to show loading animation
+loading_animation() {
+    local pid=$1
+    local delay=0.5
+    local spinstr='|/-\'
+    while [ "$(ps a | awk '{print $1}' | grep $pid)" ]; do
+        local temp=${spinstr#?}
+        printf " [%c]  " "$spinstr"
+        local spinstr=$temp${spinstr%"$temp"}
+        sleep $delay
+        printf "\b\b\b\b\b\b"
+    done
+    printf "    \b\b\b\b"
+}
+
+echo "Downloading files ..."
+
+# Use Python to handle CSV parsing and downloads
+python3 - <<END &
 import csv
 import os
+import subprocess
+import concurrent.futures
+
+def download_file(url, output, accession):
+    cmd = f"curl -L -s -o '{output}' '{url}'"
+    result = subprocess.run(cmd, shell=True)
+    if result.returncode == 0:
+        print(f"Successfully downloaded {accession}")
+    else:
+        print(f"Failed to download {accession}")
 
 with open('misc/ePRIDICT_ENCODE_Selected_Datasets_Overview.csv', 'r') as csvfile:
     reader = csv.DictReader(csvfile)
-    count = 0
-    commands = []
+    download_tasks = []
     for row in reader:
         if row["$TARGET_COLUMN"] == "x":
             full_url = f"$BASE_URL{row['Download URL']}"
             accession = row['Accession']
-            commands.append(f"wget -O bigwig/{accession}.bigWig {full_url}")
-            count += 1
-            if count % 6 == 0:
-                os.system(" & ".join(commands) + " & wait")
-                commands = []
-    if commands:
-        os.system(" & ".join(commands) + " & wait")
+            output_file = f"bigwig/{accession}.bigWig"
+            download_tasks.append((full_url, output_file, accession))
+
+    with concurrent.futures.ThreadPoolExecutor(max_workers=4) as executor:
+        executor.map(lambda x: download_file(*x), download_tasks)
+
 END
+
+PID=$!
+loading_animation $PID
+
+wait $PID
+
+echo "All downloads completed."
