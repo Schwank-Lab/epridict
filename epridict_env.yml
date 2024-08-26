@@ -1,4 +1,4 @@
-name: epridict_slim
+name: epridict
 channels:
   - conda-forge
   - anaconda

@@ -47,8 +47,7 @@ The easiest way to install and manage Python packages on various OS platforms is
     # navigate into repository
     cd epridict
     # create conda environment and install dependencies for ePRIDICT (only has to be done before first run/install)
-    # use epridict_linux for linux machine or epridict_mac for a macbook
-    conda env create -f epridict_linux.yml # epridict_mac.yml for macbook
+    conda env create -f epridict_env.yml
 
     # activate the created environment
     conda activate epridict
