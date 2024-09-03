@@ -86,7 +86,7 @@ python epridict_prediction.py manual --chromosome chr3 --position_hg38 44843504
   ####  Required:
   -  `input_filename`: Input file name - name of .csv file that has two columns [`chromosome`, `position_hg38`]. See `sample_epridict_batch.csv` in the `./input` folder.
   #### Optional:
-  -  `--output-fname`: Alternative output filename. Default is `input_filename_output.csv`. (e.g. in the example below the default output will be `sample_epdirict_batch_output.csv`)
+  -  `--output-fname`: Alternative output filename. Default is `input_filename_output.csv`. (e.g. in the example below the default output will be `sample_epridict_batch_output.csv`)
   -  `--use_full_model`: Use `full` model (455 ENCODE datasets) for prediction. Only possible when downloaded all datasets with `./epridict_download_encode.sh full`. Default: `light` model
   
 ```shell
