@@ -68,7 +68,7 @@ The easiest way to install and manage Python packages on various OS platforms is
 
 ### Running ePRIDICT in 'manual' mode:
   #### Required:
-  -  `--chromosome`: Chromosome of desired location. Format: "chr1", "chr2", ...
+  -  `--chromosome`: Chromosome of desired location. Format: "chr1", "chr2", ... (human chromosomes; Y-chromosome not supported)
   -  `--position_hg38`: Position within chromosome (hg38). Example: "1192940"
   #### Optional:
   -  `--use_full_model`: Use `full` model (455 ENCODE datasets) for prediction. Only possible when downloaded all datasets with `./epridict_download_encode.sh full`. Default: `light` model
