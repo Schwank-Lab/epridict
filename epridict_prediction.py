@@ -281,7 +281,7 @@ if __name__ == "__main__":
     parser = argparse.ArgumentParser(description="Running ePRIDICT to predict prime editing efficiencies in K562 based on chromatin context of a genomic location.")
 
     subparser = parser.add_subparsers(dest='command')
-    manual_m = subparser.add_parser('manual')
+    manual_m = subparser.add_parser('single')
     batch_m  = subparser.add_parser('batch')
 
     manual_m.add_argument("--chromosome", type=str, help="Chromosome of location to predict. ('chr1', 'chr2', ... , 'chrX'", required=True)
@@ -296,8 +296,8 @@ if __name__ == "__main__":
   
     args = parser.parse_args()
 
-    if args.command == 'manual':
-        print('Running in manual mode...')
+    if args.command == 'single':
+        print('Running in single mode...')
 
         out_dir = create_directory(output_folder, os.getcwd())
         
@@ -351,4 +351,4 @@ if __name__ == "__main__":
         predict_efficiency_df(batchdf, out_dir, model_file, model)
 
     else:
-        print('Please specify how to run ePRIDICT ("manual" or "batch") as argument after the script name.')
+        print('Please specify how to run ePRIDICT ("single" or "batch") as argument after the script name.')
