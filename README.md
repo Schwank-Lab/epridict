@@ -66,7 +66,7 @@ The easiest way to install and manage Python packages on various OS platforms is
 
 * Next, downloading ENCODE datasets is needed for prediction with ePRIDICT. Files will be downloaded in `bigwig` folder.
   Note: For running the `full` model, 455 datasets will be downloaded, requiring **624 GB** of storage space!
-        For the `light` model, with near on-par performance, 6 datasets will be downloaded, requiring **5.3 GB** of storage space.
+        For the `light` model, with slightly lower accuracy, 6 datasets will be downloaded, requiring **5.3 GB** of storage space.
   ```shell
   # make download script executable:
   chmod +x epridict_download_encode.sh
