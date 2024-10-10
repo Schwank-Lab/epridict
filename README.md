@@ -4,7 +4,7 @@
 
 This repository is part of our study in Nature Biotechnology ["Machine learning prediction of prime editing efficiency across diverse chromatin contexts"](https://rdcu.be/dLu0f) and the initial [BioRxiv preprint](https://www.biorxiv.org/content/10.1101/2023.10.09.561414v1).
 
-Predict prime editing efficiency based on chromatin context of a genomic location in K562 cells.
+Predict prime editing efficiency based on chromatin context of a genomic location in K562 (ATCC CCL-243) cells.
 Repository containing `Python` package for running trained `ePRIDICT` (epigenetic PRIme editing preDICTion) models. 
 Models were trained in K562 cells. Prediction performance may vary in different cellular contexts. Check out our [publication](https://rdcu.be/dLu0f) for further details.
 
@@ -28,8 +28,18 @@ For questions or suggestions, please either:
 ## Citation
 
 If find our work useful for your research please cite:
-- [Mathis et al., Nature Biotechnology, 2024](https://rdcu.be/dLu0f) (ePRIDICT and PRIDICT2.0)
-- [Mathis & Allam et al., Nature Biotechnology, 2023](https://rdcu.be/c3IM5) (PRIDICT)
+- [Mathis et al., Nature Biotechnology, 2024](https://rdcu.be/dLu0f) (ePRIDICT and PRIDICT2.0):
+```bibtex
+@article{mathis2024machine,
+  title={Machine learning prediction of prime editing efficiency across diverse chromatin contexts},
+  author={Mathis, Nicolas and Allam, Ahmed and Tálas, András, and Kissling, Lucas and Benvenuto, Elena and Schmidheini, Lukas and Schep, Ruben and Damodharan, Tanav and Balázs, Zsolt and Janjuha, Sharan and others},
+  journal={Nature Biotechnology},
+  year={2024},
+  publisher={Nature Publishing Group},
+  doi={10.1038/s41587-024-02268-2}
+}
+```
+
 
 
 ## Getting Started
