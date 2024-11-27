@@ -6,7 +6,6 @@ channels:
   - https://conda.anaconda.org/main
 dependencies:
   - joblib=1.1.1
-  - openssl=3.0.10
   - pandas=1.5.2
   - pip=23.2.1
   - python=3.10.12
