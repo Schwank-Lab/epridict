@@ -7,6 +7,7 @@ This repository is part of our study in Nature Biotechnology ["Machine learning 
 Predict prime editing efficiency based on chromatin context of a genomic location in K562 (ATCC CCL-243) cells.
 Repository containing `Python` package for running trained `ePRIDICT` (epigenetic PRIme editing preDICTion) models. 
 Models were trained in K562 cells. Prediction performance may vary in different cellular contexts. Check out our [publication](https://rdcu.be/dLu0f) for further details.
+For comprehensive step-by-step instructions on using ePRIDICT alongside PRIDICT2.0, including practical tips for high-throughput screening, see our detailed protocol ([Mathis et al., Nature Protocols, 2025](https://rdcu.be/eAIEQ)).
 
 ## Complementary Model
 
@@ -14,6 +15,7 @@ Models were trained in K562 cells. Prediction performance may vary in different 
 
 ## Resources
 
+- **Protocol Paper**: For detailed step-by-step instructions on using ePRIDICT and PRIDICT2.0, including practical tips & tricks for high-throughput screening, see our comprehensive protocol: [Mathis et al., Nature Protocols, 2025](https://rdcu.be/eAIEQ)
 - **Supplementary Files**: [Access Here](https://github.com/Schwank-Lab/epridict/tree/supplementary_files)
 - **Web Application**: For an online version of ePRIDICT, visit our [webapp](https://pridict.it/epridict)*.
 
@@ -39,7 +41,17 @@ If find our work useful for your research please cite:
   doi={10.1038/s41587-024-02268-2}
 }
 ```
-
+- [Mathis et al., Nature Protocols, 2025](https://rdcu.be/eAIEQ) (Protocol):
+```bibtex
+@article{mathis2025systematic,
+  title={Systematic pegRNA design with PRIDICT2.0 and ePRIDICT for efficient prime editing},
+  author={Mathis, Nicolas and Marquart, Kim Fabiano and Allam, Ahmed and Krauthammer, Michael and Schwank, Gerald},
+  journal={Nature Protocols},
+  year={2025},
+  publisher={Nature Publishing Group},
+  doi={10.1038/s41596-025-01244-7}
+}
+```
 
 
 ## Getting Started
